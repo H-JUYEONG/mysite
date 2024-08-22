@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.javaex.service.MysiteService;
-import com.javaex.service.PhonebookService;
 import com.javaex.vo.UserVo;
 
 @Controller
@@ -35,6 +34,22 @@ public class UserController {
 		mysiteService.exeJoinUser(userVo);
 		
 		return "user/joinOk";
+	}
+	
+	/* 로그인 */
+	@RequestMapping(value = "/loginform", method = { RequestMethod.GET, RequestMethod.POST })
+	public String loginForm() {
+		System.out.println("UserController.loginForm()");
+		
+		return "user/loginForm";
+	}
+	
+	/* 회원정보 수정 */
+	@RequestMapping(value = "/modifyform", method = { RequestMethod.GET, RequestMethod.POST })
+	public String modifyForm() {
+		System.out.println("UserController.modifyForm()");
+		
+		return "user/modifyForm";
 	}
 
 }

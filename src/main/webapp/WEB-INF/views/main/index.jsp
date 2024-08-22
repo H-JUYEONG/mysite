@@ -27,7 +27,7 @@
 			</ul>
 			-->	
 			<ul>
-				<li><a href="" class="btn_s">로그인</a></li>
+				<li><a href="/mysite/loginform" class="btn_s">로그인</a></li>
 				<li><a href="/mysite/joinform" class="btn_s">회원가입</a></li>
 			</ul>
 			

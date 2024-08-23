@@ -12,7 +12,7 @@
 	</insert>
 
 	<!-- 로그인 -->
-	<select id="selectByIdPw" parameterType="UserVo">
+	<select id="selectByIdPw" parameterType="UserVo" resultType="UserVo">
 		<![CDATA[   
 			select no,
 				   name

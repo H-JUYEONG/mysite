@@ -12,7 +12,7 @@ public class MainController {
 	// 메소드 gs
 	// 메소드 일반
 	
-	@RequestMapping(value="/main/main", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/main", method= {RequestMethod.GET, RequestMethod.POST})
 	public String main() {
 		System.out.println("MainController.main()");
 		

@@ -112,7 +112,7 @@
 		</div>
 		<!-- //container  -->
 
-		<div id="footer">Copyright ⓒ 2020 황일영. All right reserved</div>
+		<div id="footer">Copyright ⓒ 2024 황주영. All right reserved</div>
 		<!-- //footer -->
 
 	</div>

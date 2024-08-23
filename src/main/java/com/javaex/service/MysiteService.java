@@ -14,11 +14,21 @@ public class MysiteService {
 	
 	/* 회원가입 */
 	public int exeJoinUser(UserVo userVo) {
-		System.out.println("PhonebookService.exeJoinUser()");
+		System.out.println("MysiteService.exeJoinUser()");
 		
 		int count = mysiteDao.insertUser(userVo);
 		
 		return count;
+	}
+	
+	/* 로그인 */
+	public int exeLogin(UserVo userVo) {
+		System.out.println("MysiteService.exeLogin()");
+		
+		int count = mysiteDao.selectUser(userVo);
+		
+		return count;
+	
 	}
 
 }

@@ -14,7 +14,7 @@
 
 		<div id="header" class="clearfix">
 			<h1>
-				<a href="/mysite/main">MySite</a>
+				<a href="/mysite/main/main">MySite</a>
 			</h1>
 
 			<!-- 
@@ -25,8 +25,8 @@
 			</ul>
 			-->
 			<ul>
-				<li><a href="/mysite/loginform" class="btn_s">로그인</a></li>
-				<li><a href="/mysite/joinform" class="btn_s">회원가입</a></li>
+				<li><a href="/mysite/user/loginform" class="btn_s">로그인</a></li>
+				<li><a href="/mysite/user/joinform" class="btn_s">회원가입</a></li>
 			</ul>
 
 		</div>
@@ -85,7 +85,7 @@
 		<!-- //container  -->
 
 
-		<div id="footer">Copyright ⓒ 2020 황일영. All right reserved</div>
+		<div id="footer">Copyright ⓒ 2024 황주영. All right reserved</div>
 		<!-- //footer -->
 
 	</div>

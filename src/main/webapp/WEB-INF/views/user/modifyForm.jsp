@@ -67,7 +67,7 @@
 								<input type="radio" id="rdo-female" name="gender" value="female">
 
 							</div>
-							<input type="hidden" name="no" value="${userVo.no}">
+							<input type="hidden" name="no" value="${sessionScope.authUser.no}">
 							<!-- 버튼영역 -->
 							<div class="button-area">
 								<button type="submit" id="btn-submit">회원정보수정</button>

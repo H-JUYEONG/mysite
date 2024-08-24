@@ -69,7 +69,7 @@ public class UserController {
 		// session.removeAttribute("authUser"); // 주소 삭제는 안하고 주소 안에 있는 데이터를 지움
 		session.invalidate(); // 주소 자체를 삭제함
 
-		return "redirect:/main";
+		return "";
 	}
 
 	/* 회원정보 수정 폼 */
@@ -77,9 +77,10 @@ public class UserController {
 	public String modifyForm(HttpSession session, Model model) {
 		System.out.println("UserController.modifyForm()");
 
-		// 코드작성
+		// 로그인한 session 값을 객체로 가져오기
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		
+		// 가져온 no 값으로 회원정보 가져오기
 		UserVo userVo = userService.exeGetUserInfo(authUser.getNo());
 
 		model.addAttribute("userVo", userVo);
@@ -89,9 +90,17 @@ public class UserController {
 
 	/* 회원정보 수정 */
 	@RequestMapping(value = "/user/modify", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modify() {
+	public String modify(@ModelAttribute UserVo userVo, HttpSession session) {
 		System.out.println("UserController.modify()");
-		return "";
+		
+		// 로그인한 session 값을 객체로 가져오기
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		
+		userService.exeUserModify(userVo);
+		
+		session.setAttribute("authUser", authUser);
+		
+		return "redirect:/main";
 	}
 
 }

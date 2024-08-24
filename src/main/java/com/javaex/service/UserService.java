@@ -39,5 +39,14 @@ public class UserService {
 		
 		return userVo;
 	}
+	
+	/* 회원정보 수정 */
+	public int exeUserModify(UserVo userVo) {
+		System.out.println("UserService.exeUserModify()");
+		
+		int count = userDao.modifyUser(userVo);
+		
+		return count;
+	}
 
 }

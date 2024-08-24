@@ -32,5 +32,13 @@ public class UserDao {
 		return authUser;
 	}
 	
+	/* 회원정보 수정 폼 */
+	public UserVo selectInfo(int no) {
+		System.out.println("UserDao.selectInfo()");
+		
+		UserVo userVo = sqlSession.selectOne("user.selectInfo", no);
+		
+		return userVo;
+	}
 	
 }

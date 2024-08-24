@@ -30,5 +30,14 @@ public class UserService {
 		return authUser;
 	
 	}
+	
+	/* 회원정보 수정 폼 */
+	public UserVo exeGetUserInfo(int no) {
+		System.out.println("UserService.exeModifyForm()");
+		
+		UserVo userVo = userDao.selectInfo(no);
+		
+		return userVo;
+	}
 
 }

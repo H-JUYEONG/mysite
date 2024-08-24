@@ -51,24 +51,24 @@ public class UserController {
 	@RequestMapping(value = "/user/login", method = { RequestMethod.GET, RequestMethod.POST })
 	public String selectUser(@ModelAttribute UserVo userVo, HttpSession session) {
 		System.out.println("UserController.login()");
-		
+
 		UserVo authUser = userService.exeLogin(userVo);
-		
+
 		// 로그인
 		session.setAttribute("authUser", authUser);
 
 		// 메인페이지로 리다이렉트
 		return "redirect:/main";
 	}
-	
+
 	/* 로그아웃 */
 	@RequestMapping(value = "/user/logout", method = { RequestMethod.GET, RequestMethod.POST })
 	public String logout(HttpSession session) {
 		System.out.println("UserController.logout()");
-		
+
 		// session.removeAttribute("authUser"); // 주소 삭제는 안하고 주소 안에 있는 데이터를 지움
 		session.invalidate(); // 주소 자체를 삭제함
-		
+
 		return "redirect:/main";
 	}
 
@@ -76,12 +76,18 @@ public class UserController {
 	@RequestMapping(value = "/user/modifyform", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modifyForm(HttpSession session, Model model) {
 		System.out.println("UserController.modifyForm()");
-		
+
 		// 코드작성
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		
+		UserVo userVo = userService.exeGetUserInfo(authUser.getNo());
+
+		// 로그인
+		session.setAttribute("userVo", userVo);
 
 		return "user/modifyForm";
 	}
-	
+
 	/* 회원정보 수정 */
 	@RequestMapping(value = "/user/modify", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modify() {

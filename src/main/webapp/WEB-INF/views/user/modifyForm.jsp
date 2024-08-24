@@ -44,30 +44,30 @@
 
 				<div id="user">
 					<div id="modifyForm">
-						<form action="" method="">
+						<form action="${pageContext.request.contextPath}/user/modify" method="get">
 
 							<!-- 아이디 -->
 							<div class="form-group">
-								<label class="form-text" for="input-uid">아이디</label> <span class="text-large bold">userid</span>
+								<label class="form-text" for="input-uid">아이디</label> <span class="text-large bold">${userVo.id}</span>
 							</div>
 
 							<!-- 비밀번호 -->
 							<div class="form-group">
-								<label class="form-text" for="input-pass">패스워드</label> <input type="text" id="input-pass" name="" value="" placeholder="비밀번호를 입력하세요">
+								<label class="form-text" for="input-pass">패스워드</label> <input type="text" id="input-pass" name="password" value="**********" placeholder="비밀번호를 입력하세요">
 							</div>
 
 							<!-- 이메일 -->
 							<div class="form-group">
-								<label class="form-text" for="input-name">이름</label> <input type="text" id="input-name" name="" value="" placeholder="이름을 입력하세요">
+								<label class="form-text" for="input-name">이름</label> <input type="text" id="input-name" name="name" value="${userVo.name}" placeholder="이름을 입력하세요">
 							</div>
 
 							<!-- //나이 -->
 							<div class="form-group">
-								<span class="form-text">성별</span> <label for="rdo-male">남</label> <input type="radio" id="rdo-male" name="" value=""> <label for="rdo-female">여</label>
-								<input type="radio" id="rdo-female" name="" value="">
+								<span class="form-text">성별</span> <label for="rdo-male">남</label> <input type="radio" id="rdo-male" name="gender" value="male"> <label for="rdo-female">여</label>
+								<input type="radio" id="rdo-female" name="gender" value="female">
 
 							</div>
-
+							<input type="hidden" name="no" value="${userVo.no}">
 							<!-- 버튼영역 -->
 							<div class="button-area">
 								<button type="submit" id="btn-submit">회원정보수정</button>

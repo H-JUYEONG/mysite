@@ -82,8 +82,7 @@ public class UserController {
 		
 		UserVo userVo = userService.exeGetUserInfo(authUser.getNo());
 
-		// 로그인
-		session.setAttribute("userVo", userVo);
+		model.addAttribute("userVo", userVo);
 
 		return "user/modifyForm";
 	}

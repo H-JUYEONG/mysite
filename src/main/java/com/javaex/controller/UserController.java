@@ -69,7 +69,7 @@ public class UserController {
 		// session.removeAttribute("authUser"); // 주소 삭제는 안하고 주소 안에 있는 데이터를 지움
 		session.invalidate(); // 주소 자체를 삭제함
 
-		return "";
+		return "redirect:/main";
 	}
 
 	/* 회원정보 수정 폼 */
@@ -80,9 +80,10 @@ public class UserController {
 		// 로그인한 session 값을 객체로 가져오기
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		
-		// 가져온 no 값으로 회원정보 가져오기
+		// session의 no 값으로 회원정보 가져오기
 		UserVo userVo = userService.exeGetUserInfo(authUser.getNo());
 
+		// 회원정보 데이터를 jsp에 전달
 		model.addAttribute("userVo", userVo);
 
 		return "user/modifyForm";
@@ -98,6 +99,7 @@ public class UserController {
 		
 		userService.exeUserModify(userVo);
 		
+		// session의 no 값을 jsp에 전달
 		session.setAttribute("authUser", authUser);
 		
 		return "redirect:/main";

@@ -77,6 +77,11 @@ public class UserController {
 	public String modifyForm(HttpSession session, Model model) {
 		System.out.println("UserController.modifyForm()");
 
+		/* (UserVo)으로 형 변환(타입 캐스팅)을 하는 이유
+		 session.getAttribute("authUser") 메서드는 Object 타입을 반환한다.
+		 Object는 자바에서 모든 클래스의 최상위 부모 클래스이므로, 어떤 타입의 객체도 반환할 수 있다.
+		 하지만, Object 타입은 일반적으로 사용할 때 구체적인 타입으로 변환해야 각 클래스에 정의된 메서드나 필드에 접근할 수 있다.
+		 */
 		// 로그인한 session 값을 객체로 가져오기
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		

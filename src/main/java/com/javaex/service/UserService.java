@@ -41,12 +41,15 @@ public class UserService {
 	}
 	
 	/* 회원정보 수정 */
-	public int exeUserModify(UserVo userVo) {
+	public UserVo exeUserModify(UserVo userVo) {
 		System.out.println("UserService.exeUserModify()");
 		
 		int count = userDao.modifyUser(userVo);
 		
-		return count;
+		// 회원번호(no)를 이용해서 수정된 회원의 정보를 객체로 저장
+		UserVo modifyUserInfo = userDao.selectInfo(userVo.getNo());
+		
+		return modifyUserInfo;
 	}
 
 }

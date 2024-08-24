@@ -83,7 +83,7 @@ public class UserController {
 		// session의 no 값으로 회원정보 가져오기
 		UserVo userVo = userService.exeGetUserInfo(authUser.getNo());
 
-		// 회원정보 데이터를 jsp에 전달
+		// 회원정보를 jsp에 전달
 		model.addAttribute("userVo", userVo);
 
 		return "user/modifyForm";
@@ -94,12 +94,9 @@ public class UserController {
 	public String modify(@ModelAttribute UserVo userVo, HttpSession session) {
 		System.out.println("UserController.modify()");
 		
-		// 로그인한 session 값을 객체로 가져오기
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		UserVo authUser = userService.exeUserModify(userVo);
 		
-		userService.exeUserModify(userVo);
-		
-		// session의 no 값을 jsp에 전달
+		// 수정된 회원정보를 session에 전달
 		session.setAttribute("authUser", authUser);
 		
 		return "redirect:/main";

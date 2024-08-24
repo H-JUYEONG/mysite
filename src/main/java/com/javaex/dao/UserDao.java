@@ -42,7 +42,7 @@ public class UserDao {
 	}
 	
 	/* 회원정보 수정 */
-	public int modifyUser(UserVo userVo) {
+	public int  modifyUser(UserVo userVo) {
 		System.out.println("UserDao.modifyUser()");
 		
 		int count = sqlSession.update("user.update", userVo);

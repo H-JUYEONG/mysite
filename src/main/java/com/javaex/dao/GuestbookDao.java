@@ -30,4 +30,11 @@ public class GuestbookDao {
 		return count;
 	}
 
+	/* 방명록 삭제 */
+	public int deleteGuestbook(GuestbookVo guestbookVo) {
+
+		int count = sqlSession.delete("guestbook.delete", guestbookVo);
+
+		return count;
+	}
 }

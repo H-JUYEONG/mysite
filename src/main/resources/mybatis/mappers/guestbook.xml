@@ -23,6 +23,15 @@
 			values (#{name}, #{password}, #{content})
 		]]>
 	</insert>
+	
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="GuestbookVo">
+		<![CDATA[     
+			delete from guestbook
+			where password = #{password}
+			and no = #{no}
+		]]>
+	</delete>
 
 
 

@@ -31,4 +31,21 @@ public class GuestbookService {
 		return count;
 	}
 
+	/* 방명록 삭제 */
+	public boolean exeDeleteGuestbook(int no, String password) {
+		
+		boolean delete = false;
+
+		System.out.println("GuestbookService.deleteGuest()");
+		
+		GuestbookVo guestbookVo = new GuestbookVo(no, password);
+
+		int count = guestbookDao.deleteGuestbook(guestbookVo);
+		
+		if(count > 0) { // 삭제된 경우
+			delete = true;
+		}
+		
+		return delete;
+	}
 }

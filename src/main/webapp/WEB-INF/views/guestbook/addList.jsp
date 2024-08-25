@@ -43,7 +43,7 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<form action="${pageContext.request.contextPath}/guestbook/write" method="get">
+					<form action="${pageContext.request.contextPath}/guestbook/delete" method="get">
 						<table id="guestAdd">
 							<colgroup>
 								<col style="width: 70px;">
@@ -84,7 +84,7 @@
 							<td>${guestbookVo.no}</td>
 							<td>${guestbookVo.name}</td>
 							<td>${guestbookVo.regDate}</td>
-							<td><a href="">[삭제]</a></td>
+							<td><a href="${pageContext.request.contextPath}/guestbook/deleteform?no=${guestbookVo.no}">[삭제]</a></td>
 						</tr>
 						<tr>
 							<td colspan=4 class="text-left">${guestbookVo.content}</td>

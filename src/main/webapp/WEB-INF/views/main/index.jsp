@@ -26,7 +26,7 @@
 				<!-- content-head 없음 -->
 				<div id="index"> 
 				
-					<img id="profile-img" src="${pageContext.request.contextPath}/assets/images/profile.jpg">
+					<img id="profile-img" src="${pageContext.request.contextPath}/assets/images/cat.jpg">
 					
 					<div id="greetings">
 						<p class="text-xlarge">

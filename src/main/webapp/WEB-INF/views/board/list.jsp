@@ -51,6 +51,8 @@
 								<button type="submit" id=btn_search>검색</button>
 							</div>
 						</form>
+						
+						<!-- <c:forEach items="${requestScope.boardList}" var="BoardVo"> -->
 						<table >
 							<thead>
 								<tr>
@@ -105,6 +107,7 @@
 								</tr>
 							</tbody>
 						</table>
+						<!-- </c:forEach> -->
 			
 						<div id="paging">
 							<ul>

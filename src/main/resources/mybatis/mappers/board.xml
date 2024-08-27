@@ -3,6 +3,18 @@
 
 <mapper namespace="board">
 
+	<!-- 방명록 등록 폼(리스트 전체 가져오기) -->
+	<select id="selectList" resultType="BoardVo">
+		<![CDATA[ 
+			select no,
+				   title,
+				   content,
+				   hit,
+				   reg_date,
+				   user_no
+			from board
+		]]>
+	</select>
 
 
 

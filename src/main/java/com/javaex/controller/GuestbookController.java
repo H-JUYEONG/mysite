@@ -41,7 +41,12 @@ public class GuestbookController {
 	
 	/* 방명록 삭제 폼 */
 	@RequestMapping(value="/guestbook/deleteform", method = { RequestMethod.GET, RequestMethod.POST }) 
-	public String deleteForm(@RequestParam(value = "no") int no) {
+	public String deleteForm() {
+		
+		/* @RequestParam(value = "no") int no이 굳이 필요없다.
+		   이유: addList.jsp에서 no를 넘겨주기때문에 deleteForm.jsp에서 ${param.no}로 바로 불러오는게 가능함
+		   <a href="${pageContext.request.contextPath}/guestbook/deleteform?no=${guestbookVo.no}">[삭제]</a>
+		 */
 		
 		System.out.println("GuestbookController.deleteGuestbook()");
 		

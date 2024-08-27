@@ -12,8 +12,6 @@ public class GuestbookVo {
 
 	}
 	
-	
-
 	public GuestbookVo(int no, String password) {
 		this.no = no;
 		this.password = password;

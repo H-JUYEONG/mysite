@@ -31,7 +31,7 @@
 				   b.user_no as userNo
 			from board b
 			inner join users u
-      		where b.no = #{no}
+      		where b.user_no = #{no}
 		]]>
 	</select>
 

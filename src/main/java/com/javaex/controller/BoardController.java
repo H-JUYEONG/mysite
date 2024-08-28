@@ -35,6 +35,7 @@ public class BoardController {
 		System.out.println("BoardController.read()");
 		
 		BoardVo boardVo = boardService.exeGetContent(no);
+		System.out.println(boardVo);
 		
 		model.addAttribute("boardVo", boardVo);
 		

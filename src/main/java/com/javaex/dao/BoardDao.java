@@ -27,7 +27,7 @@ public class BoardDao {
 	public BoardVo selectContent(int no) {
 		System.out.println("BoardDao.selectContent()");
 		
-		BoardVo boardVo = sqlSession.selectOne("board.selectContent");
+		BoardVo boardVo = sqlSession.selectOne("board.selectContent", no);
 		
 		return boardVo;
 		

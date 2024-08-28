@@ -14,10 +14,22 @@ public class BoardDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	/* 게시판 목록 */
 	public List<BoardVo> getBoardList() {
+		System.out.println("BoardDao.getBoardList()");
 		
 		List<BoardVo> boardList = sqlSession.selectList("board.selectList");
 		
 		return boardList;
+	}
+	
+	/* 게시판 읽기 */
+	public BoardVo selectContent(int no) {
+		System.out.println("BoardDao.selectContent()");
+		
+		BoardVo boardVo = sqlSession.selectOne("board.selectContent");
+		
+		return boardVo;
+		
 	}
 }

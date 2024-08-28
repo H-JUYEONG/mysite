@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
@@ -30,8 +31,12 @@ public class BoardController {
 	
 	/* 게시판 읽기 */
 	@RequestMapping(value="/board/read", method = { RequestMethod.GET, RequestMethod.POST })
-	public String read() {
+	public String read(@RequestParam(value="no") int no, Model model) {
 		System.out.println("BoardController.read()");
+		
+		BoardVo boardVo = boardService.exeGetContent(no);
+		
+		model.addAttribute("boardVo", boardVo);
 		
 		return "board/read";
 	}

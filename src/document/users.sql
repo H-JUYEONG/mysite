@@ -34,9 +34,19 @@ select no,
 from users
 where no = 1;
 
+select no,
+	   name
+from users
+where id = 'boy'
+and password = 'boy'
+;
+
 -- 데이터 추가
-insert into users values(null, 'boy', 'boy', '차은우', '남');
-insert into users values(null, 'girl', 'girl', '장원영', '여');
+insert into users values(null, 'boy', 'boy', '차은우', 'male');
+insert into users values(null, 'girl', 'girl', '장원영', 'female');
+insert into users values(null, 'yyy', 'yyy', '유재석', 'male');
+insert into users values(null, 'kkk', 'kkk', '김종국', 'male');
+insert into users values(null, 'lll', 'lll', '이효리', 'female');
 
 -- 수정
 update users

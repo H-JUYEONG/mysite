@@ -4,6 +4,7 @@ public class BoardVo {
 
 	private int no;
 	private String title;
+	private String name;
 	private String content;
 	private int hit;
 	private String regDate;
@@ -13,9 +14,10 @@ public class BoardVo {
 
 	}
 
-	public BoardVo(int no, String title, String content, int hit, String regDate, int userNo) {
+	public BoardVo(int no, String title, String name, String content, int hit, String regDate, int userNo) {
 		this.no = no;
 		this.title = title;
+		this.name = name;
 		this.content = content;
 		this.hit = hit;
 		this.regDate = regDate;
@@ -36,6 +38,14 @@ public class BoardVo {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getContent() {
@@ -72,8 +82,8 @@ public class BoardVo {
 
 	@Override
 	public String toString() {
-		return "BoardVo [no=" + no + ", title=" + title + ", content=" + content + ", hit=" + hit + ", regDate="
-				+ regDate + ", userNo=" + userNo + "]";
+		return "BoardVo [no=" + no + ", title=" + title + ", name=" + name + ", content=" + content + ", hit=" + hit
+				+ ", regDate=" + regDate + ", userNo=" + userNo + "]";
 	}
 
 }

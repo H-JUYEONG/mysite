@@ -3,19 +3,37 @@
 
 <mapper namespace="board">
 
-	<!-- 방명록 등록 폼(리스트 전체 가져오기) -->
+	<!-- 게시판 목록(리스트 전체 가져오기) -->
 	<select id="selectList" resultType="BoardVo">
 		<![CDATA[ 
-			select no,
-				   title,
-				   content,
-				   hit,
-				   reg_date,
-				   user_no
-			from board
+			select b.no,
+				   b.title,
+				   u.name,
+				   b.content,
+				   b.hit,
+				   b.reg_date as regDate,
+				   b.user_no as userNo
+			from board b
+			inner join users u 
+			on b.user_no = u.no
 		]]>
 	</select>
-
+	
+	<!-- 선택한 게시판 글 내용 가져오기 -->
+	<select id="selectContent" parameterType="int" resultType="BoardVo">
+		<![CDATA[   
+			select b.no,
+				   b.title,
+				   u.name,
+				   b.content,
+				   b.hit,
+				   b.reg_date as regDate,
+				   b.user_no as userNo
+			from board b
+			inner join users u
+      		where b.no = #{no}
+		]]>
+	</select>
 
 
 </mapper>

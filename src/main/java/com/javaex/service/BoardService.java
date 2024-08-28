@@ -31,4 +31,14 @@ public class BoardService {
 		
 		return boardVo;
 	}
+	
+	/* 조회수 증가 */
+	public int exeUpdateHit(int no) {
+		System.out.println("BoardService.exeUpdateHit()");
+		
+		int count = boardDao.updateHit(no);
+		
+		return count;
+	}
+	
 }

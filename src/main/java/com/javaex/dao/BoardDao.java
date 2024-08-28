@@ -32,4 +32,16 @@ public class BoardDao {
 		return boardVo;
 		
 	}
+	
+	/* 조회수 증가 */
+	public int updateHit(int no) {
+		System.out.println("BoardDao.updateHit()");
+		
+		int count = sqlSession.update("board.updateHit", no);
+		System.out.println("------");
+		System.out.println(count);
+		
+		return count;
+		
+	}
 }

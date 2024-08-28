@@ -20,20 +20,31 @@
 	</select>
 	
 	<!-- 선택한 게시판 글 내용 가져오기 -->
-	<select id="selectContent" parameterType="int" resultType="BoardVo">
-		<![CDATA[   
-			select b.no,
-				   b.title,
-				   u.name,
-				   b.content,
-				   b.hit,
-				   b.reg_date as regDate,
-				   b.user_no as userNo
-			from board b
-			inner join users u
-      		where b.user_no = #{no}
-		]]>
-	</select>
+   <select id="selectContent" parameterType="int" resultType="BoardVo">
+      <![CDATA[   
+         select b.no,
+               b.title,
+               u.name,
+               b.content,
+               b.hit,
+               b.reg_date as regDate,
+               b.user_no as userNo
+         from board b
+         inner join users u
+            on b.user_no = u.no
+         where b.no = #{no}
+      ]]>
+   </select>
+   
+   <!-- 조회수 증가 -->
+	<update id="updateHit" parameterType="int">
+		<![CDATA[
+		 	update board
+		 	set hit = hit + 1
+		 	where no = #{no}
+	]]>
+	</update>
+
 
 
 </mapper>

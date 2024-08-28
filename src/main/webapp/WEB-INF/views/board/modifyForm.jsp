@@ -84,7 +84,7 @@
 	여기에는 본문내용이 출력됩니다.</textarea>
 							</div>
 							
-							<a id="btn_cancel" href="">취소</a>
+							<a id="btn_cancel" href="${pageContext.request.contextPath}/board/list">취소</a>
 							<button id="btn_modify" type="submit" >수정</button>
 							
 						</form>

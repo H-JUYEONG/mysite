@@ -34,8 +34,10 @@ public class BoardController {
 	public String read(@RequestParam(value="no") int no, Model model) {
 		System.out.println("BoardController.read()");
 		
+		// 조회수 증가
+		boardService.exeUpdateHit(no);
+		
 		BoardVo boardVo = boardService.exeGetContent(no);
-		System.out.println(boardVo);
 		
 		model.addAttribute("boardVo", boardVo);
 		
@@ -46,6 +48,8 @@ public class BoardController {
 	@RequestMapping(value="/board/writeform", method = { RequestMethod.GET, RequestMethod.POST })
 	public String writeForm() {
 		System.out.println("BoardController.writeForm()");
+		
+		// 추가
 		
 		return "board/writeForm";
 	}
@@ -63,6 +67,8 @@ public class BoardController {
 	public String modifyForm() {
 		System.out.println("BoardController.modifyForm()");
 		
+		// 내용불러오는거 추가해야함
+		
 		return "board/modifyForm";
 	}
 	
@@ -70,6 +76,8 @@ public class BoardController {
 	@RequestMapping(value="/board/modify", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modify() {
 		System.out.println("BoardController.modify()");
+		
+		// 추가
 		
 		return "";
 	}

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시판 읽기</title>
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 
@@ -77,8 +77,8 @@
 								</span>
 							</div>
 							
-							<a id="btn_modify" href="">수정</a>
-							<a id="btn_modify" href="">목록</a>
+							<a id="btn_modify" href="${pageContext.request.contextPath}/board/modifyform?no=${boardVo.no}">수정</a>
+							<a id="btn_modify" href="${pageContext.request.contextPath}/board/list">목록</a>
 							
 						</form>
 						<!-- //form -->

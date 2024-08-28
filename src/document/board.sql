@@ -41,7 +41,7 @@ select b.no,
        b.reg_date,
        b.user_no
 from board b
-inner join users u 
+inner join users u
 on b.user_no = u.no
 where b.no = 1
 ;
@@ -70,6 +70,11 @@ values ('가입인사~~', '안녕하세요~ 잘부탁드려요~', 5);
 update board
 set title = 'ㅎㅇㅎㅇ',
     content= '같이 스터디할사람'
+where no = 1;
+
+-- 조회수 증가
+update board
+set hit = hit+1
 where no = 1;
 
 -- 삭제

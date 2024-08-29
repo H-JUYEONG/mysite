@@ -31,6 +31,7 @@ select b.no,
 from board b
 inner join users u 
 on b.user_no = u.no
+order by b.no
 ;
 
 select b.no,
@@ -76,6 +77,12 @@ where no = 1;
 update board
 set hit = hit+1
 where no = 1;
+
+-- 게시판 내용 수정
+update board
+set title = '반갑구만유',
+	content = '반갑구만 반가워유'
+where no = 7;
 
 -- 삭제
 delete from board

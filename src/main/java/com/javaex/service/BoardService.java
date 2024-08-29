@@ -41,4 +41,24 @@ public class BoardService {
 		return count;
 	}
 	
+	/* 게시판 등록 */
+	public int exeWrite(BoardVo boardVo, int no) {
+		System.out.println("BoardService.exeWrite()");
+		
+		boardVo.setUserNo(no);
+		
+		int count = boardDao.insertBoard(boardVo);
+		
+		return count;
+	}
+	
+	/* 게시판 수정 */
+	public int exeModifyBoard(BoardVo boardVo) {
+		System.out.println("BoardService.exeModifyBoard()");
+		
+		int count = boardDao.modifyBoard(boardVo);
+		
+		return count;
+	}
+	
 }

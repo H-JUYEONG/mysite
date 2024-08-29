@@ -44,4 +44,22 @@ public class BoardDao {
 		return count;
 		
 	}
+	
+	/* 게시판 등록 */
+	public int insertBoard(BoardVo boardVo) {
+		System.out.println("BoardDao.insertBoard()");
+		
+		int count = sqlSession.insert("board.insert", boardVo);
+		
+		return count;
+	}
+	
+	/* 게시판 수정 */
+	public int modifyBoard(BoardVo boardVo) {
+		System.out.println("BoardDao.modifyBoard()");
+		
+		int count = sqlSession.update("board.update", boardVo);
+		
+		return count;
+	}
 }

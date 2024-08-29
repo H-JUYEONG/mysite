@@ -16,6 +16,7 @@
 			from board b
 			inner join users u 
 			on b.user_no = u.no
+			order by b.no
 		]]>
 	</select>
 	
@@ -41,6 +42,24 @@
 		<![CDATA[
 		 	update board
 		 	set hit = hit + 1
+		 	where no = #{no}
+	]]>
+	</update>
+	
+	<!-- 게시판 등록 -->
+	<insert id="insert" parameterType="BoardVo">
+		<![CDATA[   
+			insert into board (title, content, user_no) 
+			values (#{title}, #{content}, #{userNo})
+		]]>
+	</insert>
+	
+	<!-- 게시판 수정 -->
+	<update id="update" parameterType="BoardVo">
+		<![CDATA[
+		 	update board
+		 	set title = #{title},
+		 	content = #{content}
 		 	where no = #{no}
 	]]>
 	</update>

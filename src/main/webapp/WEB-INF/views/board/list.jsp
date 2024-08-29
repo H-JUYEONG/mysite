@@ -66,7 +66,7 @@
 								<tbody>
 									<tr>
 										<td>${BoardVo.no}</td>
-										<td class="text-left"><a href="${pageContext.request.contextPath}/board/read?no=${BoardVo.no}">${BoardVo.content}</a></td>
+										<td class="text-left"><a href="${pageContext.request.contextPath}/board/read?no=${BoardVo.no}">${BoardVo.title}</a></td>
 										<td>${BoardVo.name}</td>
 										<td>${BoardVo.hit}</td>
 										<td>${BoardVo.regDate}</td>

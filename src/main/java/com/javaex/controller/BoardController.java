@@ -95,12 +95,12 @@ public class BoardController {
 	
 	/* 게시판 삭제 */
 	@RequestMapping(value="/board/delete", method = { RequestMethod.GET, RequestMethod.POST })
-	public String delete() {
+	public String delete(@RequestParam(value="no") int no) {
 		System.out.println("BoardController.delete()");
 		
-		// 추가
+		boardService.exeDeleteBoard(no);
 		
-		return "";
+		return "redirect:/board/list";
 	}
 
 }

@@ -61,4 +61,14 @@ public class BoardService {
 		return count;
 	}
 	
+	/* 게시판 삭제 */
+	public int exeDeleteBoard(int no) {
+		System.out.println("BoardService.exeDeleteBoard()");
+		
+		int count = boardDao.deleteBoard(no);
+		
+		return count;
+				
+	}
+	
 }

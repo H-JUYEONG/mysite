@@ -49,8 +49,8 @@
 	<!-- 게시판 등록 -->
 	<insert id="insert" parameterType="BoardVo">
 		<![CDATA[   
-			insert into board (title, content, user_no) 
-			values (#{title}, #{content}, #{userNo})
+			insert into board (title, content, reg_date, user_no) 
+			values (#{title}, #{content}, now(), #{userNo})
 		]]>
 	</insert>
 	
@@ -59,10 +59,19 @@
 		<![CDATA[
 		 	update board
 		 	set title = #{title},
-		 	content = #{content}
+		 	content = #{content},
+		 	reg_date = now()
 		 	where no = #{no}
 	]]>
 	</update>
+	
+	<!-- 게시판 삭제 -->
+	<delete id="delete" parameterType="int">
+		<![CDATA[
+		 	delete from board
+		 	where no = #{no}
+	]]>
+	</delete>
 
 
 

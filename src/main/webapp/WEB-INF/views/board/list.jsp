@@ -70,7 +70,7 @@
 										<td>${BoardVo.name}</td>
 										<td>${BoardVo.hit}</td>
 										<td>${BoardVo.regDate}</td>
-										<td><a href="">[삭제]</a></td>
+										<td><a href="${pageContext.request.contextPath}/board/delete?no=${BoardVo.no}">[삭제]</a></td>
 									</tr>
 								</tbody>
 								</c:forEach>

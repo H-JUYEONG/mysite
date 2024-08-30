@@ -14,13 +14,14 @@ import com.javaex.service.GuestbookService;
 import com.javaex.vo.GuestbookVo;
 
 @Controller
+@RequestMapping(value="/guestbook")
 public class GuestbookController {
 	
 	@Autowired
 	private GuestbookService guestbookService;
 	
 	/* 방명록 등록 폼 */
-	@RequestMapping(value="/guestbook/listform", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/listform", method = { RequestMethod.GET, RequestMethod.POST })
 	public String listForm(Model model) {
 		System.out.println("GuestbookController.listForm()");
 		
@@ -31,7 +32,7 @@ public class GuestbookController {
 	}
 	
 	/* 방명록 등록 */
-	@RequestMapping(value="/guestbook/write", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/write", method = { RequestMethod.GET, RequestMethod.POST })
 	public String write(@ModelAttribute GuestbookVo guestbookVo) {
 		System.out.println("GuestbookController.write()");
 		
@@ -40,7 +41,7 @@ public class GuestbookController {
 	} 
 	
 	/* 방명록 삭제 폼 */
-	@RequestMapping(value="/guestbook/deleteform", method = { RequestMethod.GET, RequestMethod.POST }) 
+	@RequestMapping(value="/deleteform", method = { RequestMethod.GET, RequestMethod.POST }) 
 	public String deleteForm() {
 		
 		/* @RequestParam(value = "no") int no이 굳이 필요없다.
@@ -54,7 +55,7 @@ public class GuestbookController {
 	}
 	
 	/* 방명록 삭제 */
-	@RequestMapping(value="/guestbook/delete", method = { RequestMethod.GET, RequestMethod.POST }) 
+	@RequestMapping(value="/delete", method = { RequestMethod.GET, RequestMethod.POST }) 
 	public String deleteGuestbook(@ModelAttribute GuestbookVo guestbookVo) {
 		
 		System.out.println("GuestbookController.deleteGuestbook()");
@@ -63,5 +64,15 @@ public class GuestbookController {
 		System.out.println(delete);
 		
 		return "redirect:/guestbook/listform";
+	}
+	
+	//ajaxindex
+	@RequestMapping(value="/ajaxindex", method = { RequestMethod.GET, RequestMethod.POST })
+	public String ajaxindex() {
+		System.out.println("GuestbookController.ajaxindex()");
+		
+		// 방명록 데이터 리스트 가져오지 않는다.
+		
+		return "guestbook/ajaxindex";
 	}
 }

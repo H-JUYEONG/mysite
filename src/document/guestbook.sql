@@ -34,7 +34,9 @@ select 	no,
         password,
 		content,
         reg_date
-from guestbook;
+from guestbook
+order by no desc
+;
 
 select 	no,
 		name,

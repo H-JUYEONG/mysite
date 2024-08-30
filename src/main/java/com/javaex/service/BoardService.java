@@ -45,6 +45,7 @@ public class BoardService {
 	public int exeWrite(BoardVo boardVo, int no) {
 		System.out.println("BoardService.exeWrite()");
 		
+		// xml mapper에 parameterType="BoardVo"이므로 boardVo 형태로 보내줘야함 -> 매개변수 no값을 set으로 넣어서 하나의 객체로 만들기
 		boardVo.setUserNo(no);
 		
 		int count = boardDao.insertBoard(boardVo);

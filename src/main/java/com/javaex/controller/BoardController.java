@@ -41,8 +41,10 @@ public class BoardController {
 		// 조회수 증가
 		boardService.exeUpdateHit(no);
 		
+		// param으로 게시판 내용 가져오기
 		BoardVo boardVo = boardService.exeGetContent(no);
 		
+		// jsp에 데이터 전달
 		model.addAttribute("boardVo", boardVo);
 		
 		return "board/read";
@@ -61,6 +63,7 @@ public class BoardController {
 	public String write(@ModelAttribute BoardVo boardVo, HttpSession session) {
 		System.out.println("BoardController.write()");
 		
+		// session 가져오기(session에는 회원 no, name 있음)
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		
 		// 회원번호를 같이 insert

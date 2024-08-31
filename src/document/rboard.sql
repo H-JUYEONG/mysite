@@ -13,7 +13,7 @@ create table rboard(
    user_no integer not null,
    title varchar(500),
    content text,
-   hit integer,
+   hit integer default 0,
    reg_date datetime,
    group_no integer,
    order_no integer,
@@ -24,45 +24,58 @@ create table rboard(
 -- 조회
 select * from rboard;
 
-select no,
-	   user_no,
-       title,
-       content,
-       hit,
-       reg_date,
-       group_no,
-       order_no,
-       depth
-from rboard
+select b.no,
+	   b.user_no as userNo,
+       u.name,
+       b.title,
+       b.content,
+       b.hit,
+       b.reg_date as regDate,
+       b.group_no as groupNo,
+       b.order_no as orderNo,
+       b.depth
+from rboard b
+inner join users u
+on b.user_no = u.no
+order by b.no
 ;
 
-select no,
-	   user_no,
-       title,
-       content,
-       hit,
-       reg_date,
-       group_no,
-       order_no,
-       depth
-from rboard
-where no = 1
+select b.no,
+	   b.user_no as userNo,
+       u.name,
+       b.title,
+       b.content,
+       b.hit,
+       b.reg_date as regDate,
+       b.group_no as groupNo,
+       b.order_no as orderNo,
+       b.depth
+from rboard b
+inner join users u
+on b.user_no = u.no
+where b.no = 1
+order by b.no
 ;
 
--- 데이터 추가 / 수정 필요
-insert into rboard (title, content, reg_date, user_no) 
-values ('게임 파티원 구해요', '같이할사람 서버2로 ㄱㄱ', now(), 1);
+-- 데이터 추가
+insert into rboard (user_no, title, content, reg_date, group_no, order_no, depth) 
+values (1, '게임 파티원 구해요', '같이할사람 서버2로 ㄱㄱ', now(), 1, 1, 0);
 
+insert into rboard (user_no, title, content, reg_date, group_no, order_no, depth) 
+values (2, '오늘의 기록', '날씨가 너무 더워서 힘들다..', now(), 2, 1, 0);
 
--- 수정
-update rboard
-set title = 'ㅎㅇㅎㅇ',
-    content= '같이 스터디할사람'
-where no = 1;
+insert into rboard (user_no, title, content, reg_date, group_no, order_no, depth)  
+values (3, '끝말잇기 할사람99', '이기면 문상 5000원줌', now(), 3, 1, 0);
+
+insert into rboard (user_no, title, content, reg_date, group_no, order_no, depth) 
+values (4, '그거 아는사람?', '어제 누구 열애설 떴다던데', now(), 4, 1, 0);
+
+insert into rboard (user_no, title, content, reg_date, group_no, order_no, depth)  
+values (5, '가입인사~~', '안녕하세요~ 잘부탁드려요~', now(), 5, 1, 0);
 
 -- 조회수 증가
 update rboard
-set hit = hit+1
+set hit = hit + 1
 where no = 1;
 
 -- 게시판 내용 수정
@@ -74,3 +87,4 @@ where no = 7;
 -- 삭제
 delete from rboard
 where no = 5;
+

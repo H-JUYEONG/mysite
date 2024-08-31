@@ -26,8 +26,8 @@ select b.no,
        u.name,
        b.content,
        b.hit,
-       b.reg_date,
-       b.user_no
+       b.reg_date as regDate,
+       b.user_no as userNo
 from board b
 inner join users u 
 on b.user_no = u.no
@@ -39,8 +39,8 @@ select b.no,
        u.name,
        b.content,
        b.hit,
-       b.reg_date,
-       b.user_no
+       b.reg_date as regDate,
+       b.user_no as userNo
 from board b
 inner join users u
 on b.user_no = u.no
@@ -66,16 +66,9 @@ values ('가입인사~~', '안녕하세요~ 잘부탁드려요~', now(), 5);
 -- insert into board (title, content) 
 -- values ('옷 싸게 팔아요', '사이즈 미스로 판매합니다. 연락주세요~');
 
-
--- 수정
-update board
-set title = 'ㅎㅇㅎㅇ',
-    content= '같이 스터디할사람'
-where no = 1;
-
 -- 조회수 증가
 update board
-set hit = hit+1
+set hit = hit + 1
 where no = 1;
 
 -- 게시판 내용 수정

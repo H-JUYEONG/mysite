@@ -24,12 +24,12 @@
    <select id="selectContent" parameterType="int" resultType="BoardVo">
       <![CDATA[   
          select b.no,
-               b.title,
-               u.name,
-               b.content,
-               b.hit,
-               b.reg_date as regDate,
-               b.user_no as userNo
+                b.title,
+                u.name,
+                b.content,
+                b.hit,
+                b.reg_date as regDate,
+                b.user_no as userNo
          from board b
          inner join users u
             on b.user_no = u.no

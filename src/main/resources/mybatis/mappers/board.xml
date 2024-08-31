@@ -59,8 +59,7 @@
 		<![CDATA[
 		 	update board
 		 	set title = #{title},
-		 	content = #{content},
-		 	reg_date = now()
+		 	content = #{content}
 		 	where no = #{no}
 	]]>
 	</update>

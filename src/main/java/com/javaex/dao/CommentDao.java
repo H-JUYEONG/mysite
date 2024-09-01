@@ -54,7 +54,7 @@ public class CommentDao {
 	}
 	
 	/* 댓글 등록 */
-	public int writeComment(CommentVo commentVo) {
+	public void writeComment(CommentVo commentVo) {
 		
 		
 		return ;

@@ -17,7 +17,7 @@ create table rboard(
    reg_date datetime,
    group_no integer,
    order_no integer,
-   depth integer,
+   depth integer, 
    FOREIGN KEY(user_no) REFERENCES users(no)
 );
 
@@ -56,6 +56,9 @@ on b.user_no = u.no
 where b.no = 1
 order by b.no
 ;
+
+insert into RBOARD (user_no, title, content, reg_date, group_no, order_no, depth) 
+values (1, '게임 파티원 구해요', '같이할사람 서버2로 ㄱㄱ', now(), (select ifnull(max(b.group_no), 0) + 1 from rboard b), 1, 0);
 
 -- 데이터 추가
 insert into rboard (user_no, title, content, reg_date, group_no, order_no, depth) 

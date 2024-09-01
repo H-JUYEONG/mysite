@@ -56,7 +56,7 @@ public class CommentService {
 	}
 
 	/* 댓글 등록 */
-	public int exeWriteComment(CommentVo commentVo) {
+	public void exeWriteComment(CommentVo commentVo) {
 		
 		
 		return ;

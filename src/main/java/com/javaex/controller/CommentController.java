@@ -73,14 +73,6 @@ public class CommentController {
 		return "redirect:/board2/list2";
 	}
 	
-	/* 댓글 등록 폼 */
-    @RequestMapping(value="/board2/writeCommentForm2", method = { RequestMethod.GET, RequestMethod.POST })
-    public String writeReplyForm() {
-    	System.out.println("CommentController.writeReplyForm()");
-    	
-        return "board/writeCommentForm2";
-    }
-	
 	/* 댓글 등록 */
     @RequestMapping(value="/board2/writecomment2", method = { RequestMethod.GET, RequestMethod.POST })
     public String writeComment(@ModelAttribute CommentVo commentVo, HttpSession session) {

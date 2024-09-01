@@ -46,7 +46,7 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<form id="guestbookForm" action="${pageContext.request.contextPath}/api/guestbook/write" method="">
+					<form id="guestbookForm" action="${pageContext.request.contextPath}/api/guestbook/write" method="get">
 						<table id="guestAdd">
 							<colgroup>
 								<col style="width: 70px;">

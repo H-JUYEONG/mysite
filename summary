@@ -1,0 +1,5 @@
+ajaxindex 전체적인 흐름 요약
+1. @RequestMapping: /ajaxindex  경로가 요청되면 ajaxindex.jsp를 반환한다.
+2. ajaxindex.jsp에 있는 axios에서 ajax를 요청한다.
+3. ApiGuestbookController에서 List형식으로 데이터를 받아와서 guestbookList를 반환한다.
+4. ajaxinde.jsp에서 수신받은 데이터를 화면에 렌더링한다.

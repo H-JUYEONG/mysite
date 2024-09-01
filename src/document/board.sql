@@ -7,7 +7,7 @@ use web_db;
 -- table 삭제
 drop table board;
 
--- users 테이블 생성(person 계정에서 실행)
+-- board 테이블 생성(web 계정에서 실행)
 create table board(
    no integer primary key auto_increment,
    title varchar(500) not null,

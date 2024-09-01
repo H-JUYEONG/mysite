@@ -53,13 +53,8 @@
 	]]>
 	</update>
 	
-	<!-- 게시판 등록 -->
-	<insert id="insert" parameterType="CommentVo">
-		<![CDATA[   
-			insert into rboard (user_no, title, content, reg_date, group_no, order_no, depth) 
-			values (#{userNo}, #{title}, #{content}, now(), #{no}, 1, 0)
-		]]>
-	</insert>
+	
+	
 	
 	<!-- 게시판 수정 -->
 	<update id="update" parameterType="CommentVo">

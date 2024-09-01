@@ -52,6 +52,13 @@ public class CommentDao {
 
 		return count;
 	}
+	
+	/* 댓글 등록 */
+	public int writeComment(CommentVo commentVo) {
+		
+		
+		return ;
+	}
 
 	/* 게시판 수정 */
 	public int modifyBoard(CommentVo commentVo) {

@@ -7,7 +7,7 @@ use web_db;
 -- table 삭제
 drop table rboard;
 
--- users 테이블 생성(person 계정에서 실행)
+-- rboard 테이블 생성(web 계정에서 실행)
 create table rboard(
    no integer primary key auto_increment,
    user_no integer not null,

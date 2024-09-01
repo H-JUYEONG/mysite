@@ -59,7 +59,7 @@ public class CommentController {
 		return "board/writeForm2";
 	}
 	
-	/* 게시판 등록 */ // 수정 필요
+	/* 게시판 등록 */
 	@RequestMapping(value="/board2/write2", method = { RequestMethod.GET, RequestMethod.POST })
 	public String write(@ModelAttribute CommentVo commentVo, HttpSession session) {
 		System.out.println("CommentController.write()");
@@ -72,6 +72,24 @@ public class CommentController {
 		
 		return "redirect:/board2/list2";
 	}
+	
+	/* 댓글 등록 폼 */
+    @RequestMapping(value="/board2/writeCommentForm2", method = { RequestMethod.GET, RequestMethod.POST })
+    public String writeReplyForm() {
+    	System.out.println("CommentController.writeReplyForm()");
+    	
+        return "board/writeCommentForm2";
+    }
+	
+	/* 댓글 등록 */
+    @RequestMapping(value="/board2/writecomment2", method = { RequestMethod.GET, RequestMethod.POST })
+    public String writeComment(@ModelAttribute CommentVo commentVo, HttpSession session) {
+    	System.out.println("CommentController.writeComment()");
+    	
+    	// 코드 작성
+    	 
+         return "";
+    }
 	
 	/* 게시판 수정 폼 */
 	@RequestMapping(value="/board2/modifyform2", method = { RequestMethod.GET, RequestMethod.POST })

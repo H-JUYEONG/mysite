@@ -41,4 +41,15 @@ public class ApiGuestbookController {
 		return gVo;
 	}
 
+	/* 방명록 삭제 */
+	@ResponseBody
+	@RequestMapping(value = "/api/guestbook/remove", method = { RequestMethod.GET, RequestMethod.POST })
+	public boolean remove(@ModelAttribute GuestbookVo guestbookVo) {
+		System.out.println("ApiGuestbookController.remove()");
+
+		boolean count = guestbookService.exeDeleteGuestbook(guestbookVo.getNo(), guestbookVo.getPassword());
+
+		return count;
+	}
+
 }

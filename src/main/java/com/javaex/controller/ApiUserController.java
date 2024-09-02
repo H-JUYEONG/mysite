@@ -22,7 +22,7 @@ public class ApiUserController {
 	@RequestMapping(value = "/api/user/idcheck", method = { RequestMethod.GET, RequestMethod.POST })
 	public int idCheck(@RequestParam(value="id") String id) {
 		System.out.println("ApiUserController.idCheck()");
-		System.out.println(id);
+
 		int count = userService.exeUseridCheck(id);
 		
 		return count;

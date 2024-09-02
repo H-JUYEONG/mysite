@@ -53,8 +53,6 @@ public class UserDao {
 	/* 아이디 중복 체크 */
 	public int userIdCheck(String id) {
 		System.out.println("UserDao.userIdCheck()");
-		System.out.println("-----");
-		System.out.println(id);
 
 		int count = sqlSession.selectOne("user.selectId", id);
 

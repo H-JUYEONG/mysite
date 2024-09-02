@@ -31,13 +31,17 @@ public class ApiGuestbookController {
 	}
 	
 	/* 방명록 등록 */
+	@ResponseBody
 	@RequestMapping(value="/api/guestbook/write", method = { RequestMethod.GET, RequestMethod.POST })
-	public String write(@ModelAttribute GuestbookVo guestbookVo) {
+	public GuestbookVo write(@ModelAttribute GuestbookVo guestbookVo) {
 		System.out.println("ApiGuestbookController.write()");
 		
-		// guestbookService.exeInsertGuestbook(guestbookVo);
+		System.out.println(guestbookVo);
 		
-		return "";
+		GuestbookVo gVo = guestbookService.exeAddandGuest(guestbookVo);
+		System.out.println(gVo);
+		
+		return gVo;
 	}
 
 }

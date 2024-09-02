@@ -48,4 +48,17 @@ public class GuestbookService {
 		
 		return delete;
 	}
+	
+	/* ajax 등록 */
+	public GuestbookVo exeAddandGuest(GuestbookVo guestbookVo) {
+		System.out.println("GuestbookService.exeAddandGuest()");
+		
+		// 키 값을 가져온다.
+		int count = guestbookDao.insertSelectKey(guestbookVo);
+		
+		// 가져온 키 값으로 데이터 1개 가져오기
+		GuestbookVo gVo = guestbookDao.guestbookSelectOne(guestbookVo.getNo());
+		
+		return gVo;
+	}
 }

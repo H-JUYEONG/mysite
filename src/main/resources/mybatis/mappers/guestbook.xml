@@ -33,8 +33,33 @@
 			and no = #{no}
 		]]>
 	</delete>
-
-
+	
+	<!-- ajax 저장(저장하고 PK 알아내기) -->
+	<insert id="insertSelectKey" parameterType="GuestbookVo">
+		<![CDATA[
+			insert into guestbook (name, password, content) 
+			values (#{name}, #{password}, #{content})
+		]]>
+		<selectKey keyProperty="no" resultType="int" order="AFTER">
+			<![CDATA[
+				select last_insert_id()
+			]]>
+		</selectKey>
+	</insert>
+	
+	<!-- ajax 데이터 1개 가져오기 -->
+	<select id="selectOne" parameterType="int" resultType="GuestbookVo">
+		<![CDATA[ 
+			select 	no,
+					name,
+        			password,
+					content,
+        			reg_date as regDate
+			from guestbook
+			where no = #{no}
+			order by no desc
+		]]>
+	</select>
 
 
 

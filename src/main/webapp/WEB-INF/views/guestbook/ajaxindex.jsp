@@ -156,6 +156,8 @@
             }).then(function (response) {
             	console.log(response.data); //수신데이터
             	
+            	render(response.data);
+            	
             	for(let i = 0; i < response.data.length; i++) {
                    // console.log(response.data[i].name);
                    let guestbookVo = response.data[i]

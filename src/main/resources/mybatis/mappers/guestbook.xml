@@ -34,7 +34,7 @@
 		]]>
 	</delete>
 	
-	<!-- ajax 저장(저장하고 PK 알아내기) -->
+	<!-- ajax 등록(저장하고 PK 알아내기) -->
 	<insert id="insertSelectKey" parameterType="GuestbookVo">
 		<![CDATA[
 			insert into guestbook (name, password, content) 

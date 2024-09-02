@@ -53,7 +53,7 @@ public class GuestbookService {
 	public GuestbookVo exeAddandGuest(GuestbookVo guestbookVo) {
 		System.out.println("GuestbookService.exeAddandGuest()");
 
-		// 키 값을 가져온다.
+		// 저장
 		int count = guestbookDao.insertSelectKey(guestbookVo);
 
 		// 가져온 키 값으로 데이터 1개 가져오기

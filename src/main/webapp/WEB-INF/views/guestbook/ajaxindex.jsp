@@ -237,8 +237,8 @@
 	// 모달창 보이기
 	function callModal(event) {
 		
-		console.log(this);
-		console.log(event.target.tagName);
+		// console.log(this);
+		// console.log(event.target.tagName);
 		if(event.target.tagName == 'BUTTON') { // tagName은 무조건 대문자로 비교해야함
 			console.log('클릭');
 		
@@ -253,6 +253,10 @@
 			// 모달창 보이게 처리 (display: block 추가)
 			let modalTag = document.querySelector('#myModal');
 			modalTag.style.display = 'block';
+			
+			// 이전에 입력한 비밀번호 안보이게 하기
+			let txtPwTag = document.querySelector('#modalPw');
+			txtPwTag.value = '';
 		}
 		
 	}
@@ -300,12 +304,6 @@
         	nameTag.value = ''; 
         	passwordTag.value = ''; 
         	contentTag.value = ''; 
-        	  
-        	for(let i = 0; i < response.data.length; i++) {
-               // console.log(response.data[i].name);
-               let guestbookVo = response.data[i]
-        		render(guestbookVo);
-              }
         	
         }).catch(function (error) {
         	console.log(error);

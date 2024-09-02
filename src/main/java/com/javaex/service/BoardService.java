@@ -27,18 +27,12 @@ public class BoardService {
 	public BoardVo exeGetContent(int no) {
 		System.out.println("BoardService.exeGetContent()");
 		
+		// 조회수 증가
+		boardDao.updateHit(no);
+		
 		BoardVo boardVo = boardDao.selectContent(no);
 		
 		return boardVo;
-	}
-	
-	/* 조회수 증가 */
-	public int exeUpdateHit(int no) {
-		System.out.println("BoardService.exeUpdateHit()");
-		
-		int count = boardDao.updateHit(no);
-		
-		return count;
 	}
 	
 	/* 게시판 등록 */

@@ -37,10 +37,7 @@ public class BoardController {
 	@RequestMapping(value="/board/read", method = { RequestMethod.GET, RequestMethod.POST })
 	public String read(@RequestParam(value="no") int no, Model model) {
 		System.out.println("BoardController.read()");
-		
-		// 조회수 증가
-		boardService.exeUpdateHit(no);
-		
+
 		// param으로 게시판 내용 가져오기
 		BoardVo boardVo = boardService.exeGetContent(no);
 		

@@ -51,5 +51,15 @@ public class UserService {
 		
 		return modifyUserInfo;
 	}
+	
+	/* 아이디 중복 체크 */
+	public int exeUseridCheck(String id) {
+		System.out.println("UserService.exeUseridCheck()");
+		
+		int count = userDao.userIdCheck(id);
+		
+		return count;
+		
+	}
 
 }

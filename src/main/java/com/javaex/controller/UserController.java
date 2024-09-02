@@ -107,4 +107,10 @@ public class UserController {
 		return "redirect:/main";
 	}
 
+	/* ajax 회원가입 */
+	@RequestMapping(value = "/user/joinform2", method = { RequestMethod.GET, RequestMethod.POST })
+	public String joinForm2() {
+		System.out.println("UserController.joinForm2()");
+		return "user/joinForm2";
+	}
 }

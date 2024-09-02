@@ -25,8 +25,8 @@
 			<div id="aside">
 				<h2>방명록</h2>
 				<ul>
-					<li>일반방명록</li>
-					<li>ajax방명록</li>
+					<li><a href="${pageContext.request.contextPath}/guestbook/listform">일반방명록</a></li>
+					<li><a href="${pageContext.request.contextPath}/guestbook/ajaxindex">ajax방명록</a></li>
 				</ul>
 			</div>
 			<!-- //aside -->
@@ -118,7 +118,7 @@
         	for(let i = 0; i < response.data.length; i++) {
                // console.log(response.data[i].name);
                let guestbookVo = response.data[i]
-        		render(guestbookVo);
+        		render(guestbookVo, 'down');
               }
         	
         }).catch(function (error) {
@@ -155,8 +155,8 @@
             	responseType: 'json' //수신타입
             }).then(function (response) {
             	console.log(response.data); //수신데이터
-            	
-            	render(response.data);
+            
+            	render(response.data, 'up');
             	
             	for(let i = 0; i < response.data.length; i++) {
                    // console.log(response.data[i].name);
@@ -174,7 +174,7 @@
 
 	
 	/* 그리기 */
-	function render(guestbookVo) { // 매개변수 이름은 아무렇게나 가능
+	function render(guestbookVo, dir) { // 매개변수 이름은 아무렇게나 가능
 		
 		// 태그 가져오기
 		let listArea = document.querySelector('#guestbookListArea');
@@ -198,10 +198,15 @@
 		str += '	</tr>';
 		str += '</table>';
 		
-		listArea.insertAdjacentHTML('afterbegin', str); // 쿼리문 order by가 asc일 경우에는 beforeend 사용
+		if(dir == 'down') {
+			listArea.insertAdjacentHTML('beforeend', str);
+		} else if (dir == 'up') {
+			listArea.insertAdjacentHTML('afterbegin', str);
+		} else {
+			console.log('방향체크');
+		}
 	}
 	
-
 	</script>
 
 </body>

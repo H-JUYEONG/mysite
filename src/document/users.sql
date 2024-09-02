@@ -41,6 +41,12 @@ where id = 'boy'
 and password = 'boy'
 ;
 
+select no,
+	   id
+from users
+where id = 'boy'
+;
+
 -- 데이터 추가
 insert into users values(null, 'boy', 'boy', '차은우', 'male');
 insert into users values(null, 'girl', 'girl', '장원영', 'female');

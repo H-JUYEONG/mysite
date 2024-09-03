@@ -48,10 +48,6 @@
 }
 </style>
 
-
-
-
-
 </head>
 
 
@@ -100,9 +96,9 @@
 							
 							<c:forEach items="${requestScope.galleryList}" var="GalleryVo">
 							<!-- 이미지반복영역 -->
-								<li>
+								<li id="i-${GalleryVo.no}">
 									<div class="view" >
-										<img class="imgItem" src="${pageContext.request.contextPath}/upload/${GalleryVo.saveName}">
+										<img class="imgItem" data-no="${GalleryVo.no}" data-userno="${GalleryVo.userNo}" src="${pageContext.request.contextPath}/upload/${GalleryVo.saveName}">
 										<div class="imgWriter">작성자: <strong>${GalleryVo.name}</strong></div>
 									</div>
 								</li>
@@ -112,8 +108,8 @@
 					</div>
 					<!-- //list -->
 					
-				<!-- 모달 창 컨텐츠 -->
-				<div id="myModal" class="modal">
+				<!-- 이미지 올리기 모달창 -->
+				<div id="uploadImg" class="modal">
 					<div id="img-form" class="modal-content">
 						<p>이미지등록</p>
 						<button class="closeBtn" id="closeBtn" type="button">×</button>
@@ -143,6 +139,24 @@
                   	</div>
                	</div>
 					
+				<!-- 이미지보기 및 삭제 모달창 -->
+				<div id="showImg" class="modal">
+					<div id="img-form" class="modal-content">
+						<p>이미지보기</p>
+						<button class="closeBtn" id="closeBtn2" type="button">×</button>
+                   		<div class="m-body">
+                   			<img class="imgItem" id="show" src="">
+                   		</div>
+                   			<div>
+                   				<button id="btnDelete" class="btnDelete" type="button">삭제</button>
+                   			</div>
+                   		<div>
+                   			<input id="modalNo" class="m-no" type="text" name="no" value="">
+                   		</div>
+                  	</div>
+               	</div>	
+					
+					
 				</div>
 				<!-- //	gallery -->
 
@@ -161,32 +175,119 @@
 	<script>
 	document.addEventListener("DOMContentLoaded", function() {
 		
+		// 이미지 업로드 모달창 띄우기 버튼 클릭이벤트 등록
 		let uploadBtn = document.querySelector('#btnImgUpload');
 		uploadBtn.addEventListener('click', callModal);
 		
+		// 이미지 업로드 모달창 닫기 버튼 클릭이벤트 등록
 		let closeBtn = document.querySelector('#closeBtn');
 		closeBtn.addEventListener('click', closeModal);
 		
+		// 이미지보기 모달창 띄우기 버튼 클릭이벤트 등록
+		let showImg = document.querySelector('#viewArea');
+		showImg.addEventListener('click', showImgModal);
+		
+		// 이미지보기 모달창 닫기 버튼 클릭이벤트 등록
+		let closeBtn2 = document.querySelector('#closeBtn2');
+		closeBtn2.addEventListener('click', closeImgModal);
+		
+		// 이미지보기 모달창 삭제 버튼 클릭이벤트 등록
+		let btnDelete = document.querySelector('#btnDelete');
+		btnDelete.addEventListener('click', deleteRemove);
+
 	});
 	
-	// 모달창 보이기
+	// 이미지 업로드 모달창 보이기
 	function callModal() {
-		let modalTag = document.querySelector('#myModal');
+		let modalTag = document.querySelector('#uploadImg');
 		modalTag.style.display = 'block';
 	}
 	
-	// 모달창 닫기
+	// 이미지 업로드 모달창 닫기
 	function closeModal() {
-		let modalTag = document.querySelector('#myModal');
+		let modalTag = document.querySelector('#uploadImg');
 		modalTag.style.display = 'none';
 	}
 	
+	// 이미지보기 모달창 보이기
+	function showImgModal(event) {
+		
+		if(event.target.tagName == 'IMG') {
+			console.log('클릭');
+			
+			// 갤러리 리스트의 이미지 값 가져오기
+			let src = event.target.src;  // 주소
+			let no = event.target.dataset.no; // 이미지 번호
+			let userNo = event.target.dataset.userno; // 회원번호
+			let userSession = ${sessionScope.authUser.no}; // 로그인한 회원번호 
+			
+			// 이미지보기 모달창에 가져온 이미지 주소 값 넣기
+			let imgTag = document.querySelector('#show');
+			imgTag.src = src;
+			
+			// 이미지보기 모달창 input에 가져온 no 값 넣기
+			let txtNoTag = document.querySelector('#modalNo');
+			txtNoTag.value = no;
+			
+			// 삭제 버튼 id 가져오기
+			let btnDelete = document.querySelector('#btnDelete');
+			
+			if (userSession == userNo) {
+				btnDelete.style.display = 'block'; // 삭제 버튼 보이기
+	        } else {
+	            btnDelete.style.display = 'none'; // 삭제 버튼 숨기기
+	        }
+			
+			// 모달창 보이게 처리
+			let modalTag = document.querySelector('#showImg');
+			modalTag.style.display = 'block';
+		}
+	}
+	
+	// 이미지보기 모달창 닫기
+	function closeImgModal() {
+		
+		let modalTag = document.querySelector('#showImg');
+		modalTag.style.display = 'none';
+	}
+	
+	// 이미지 삭제
+	function deleteRemove() {
+		
+		// input에 넣어둔 no의 value를 가져온다.
+		let txtNoTag = document.querySelector('#modalNo');
+		let no = txtNoTag.value;
+		
+		// DB에서 데이터 삭제(서버에 전송해서 삭제)
+		axios({
+			method: 'get', // put, post, delete
+			url: '${pageContext.request.contextPath}/api/gallery/remove',
+			headers: {"Content-Type" : "application/json; charset=utf-8"}, //전송타입
+			params: { no: no }, //get방식 파라미터로 값이 전달
+			//data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+			
+			responseType: 'json' //수신타입
+		}).then(function (response) {
+				console.log(response); //수신데이터
+				console.log(response.data);
+				
+				// 화면에서 지우기
+				let delId = '#i-' + no;
+				let removeList = document.querySelector(delId);
+				removeList.remove();
+					
+				// 모달창 닫기
+				closeImgModal();
+				
+				
+		}).catch(function (error) {
+				console.log(error);
+		});
+		
+	}
 	
 	
-	
-	
-	
-	
+
 	</script>
 
 

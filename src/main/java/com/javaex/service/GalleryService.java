@@ -82,5 +82,14 @@ public class GalleryService {
 
 	}
 	
+	/* 이미지 삭제 */
+	public int exeDeleteImg(int no) {
+		System.out.println("GalleryService.exeDeleteImg()");
+		
+		int count = galleryDao.deleteImg(no);
+		
+		return count;
+	}
+	
 
 }

@@ -70,7 +70,7 @@
 										<td>${BoardVo.name}</td>
 										<td>${BoardVo.hit}</td>
 										<td>${BoardVo.regDate}</td>
-										<c:if test="${sessionScope.authUser.no == BoardVo.no}">
+										<c:if test="${sessionScope.authUser.no == BoardVo.userNo}">
 										<td><a href="${pageContext.request.contextPath}/board/delete?no=${BoardVo.no}">[삭제]</a></td>
 										</c:if>
 									</tr>

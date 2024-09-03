@@ -30,7 +30,6 @@ public class AttachVo {
 		this.fileSize = fileSize;
 	}
 
-	// 메소드 gs
 	public int getNo() {
 		return no;
 	}
@@ -71,7 +70,6 @@ public class AttachVo {
 		this.fileSize = fileSize;
 	}
 
-	// 메소드 일반
 	@Override
 	public String toString() {
 		return "AttachVo [no=" + no + ", orgName=" + orgName + ", saveName=" + saveName + ", filePath=" + filePath

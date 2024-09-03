@@ -5,14 +5,20 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.javaex.dao.AttachDao;
 import com.javaex.vo.AttachVo;
 
 @Service
 public class AttachService {
+	
+	@Autowired
+	private AttachDao attachDao;
 
+	/* 업로드 */
 	public String upload(MultipartFile file) {
 		System.out.println("AttachService.upload()");
 
@@ -46,8 +52,7 @@ public class AttachService {
 		System.out.println("attachVo: " + attachVo);
 
 		// (1-2) dao를 통해서 db에 저장
-		// 과제.......
-		System.out.println("과제: " + "DB 저장중....");
+		attachDao.insertFile(attachVo);
 
 		// 사진을 서버의 하드디스크에 복사해야된다
 		// 파일 저장

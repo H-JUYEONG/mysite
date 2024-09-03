@@ -20,5 +20,13 @@
       ]]>
     </select>
    
+   <!-- 업로드 된 사진 데이터 DB에 올리기 -->
+	<insert id="insert" parameterType="GalleryVo">
+		<![CDATA[   
+			insert into gallery (user_no, content, file_path, org_name, save_name, file_size) 
+			values (#{userNo}, #{content}, #{filePath}, #{orgName}, #{saveName}, #{fileSize})
+		]]>
+	</insert>
+   
 
 </mapper>

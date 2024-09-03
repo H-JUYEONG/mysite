@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>업로드 결과</title>
 
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/gallery.css" rel="stylesheet" type="text/css">
@@ -15,35 +15,8 @@
 <body>
 	<div id="wrap">
 
-		<div id="header" class="clearfix">
-			<h1>
-				<a href="">MySite</a>
-			</h1>
-
-			<!-- 
-			<ul>
-				<li>황일영 님 안녕하세요^^</li>
-				<li><a href="" class="btn_s">로그아웃</a></li>
-				<li><a href="" class="btn_s">회원정보수정</a></li>
-			</ul>
-			-->	
-			<ul>
-				<li><a href="" class="btn_s">로그인</a></li>
-				<li><a href="" class="btn_s">회원가입</a></li>
-			</ul>
-			
-		</div>
-		<!-- //header -->
-
-		<div id="nav">
-			<ul class="clearfix">
-				<li><a href="">입사지원서</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">방명록</a></li>
-			</ul>
-		</div>
-		<!-- //nav -->
+		<!-- header + nav -->
+		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
 
 		<div id="container" class="clearfix">
@@ -51,7 +24,7 @@
 				<h2>갤러리</h2>
 				<ul>
 					<li><a href="">일반갤러리</a></li>
-					<li><a href="">파일첨부연습</a></li>
+					<li><a href="${pageContext.request.contextPath}/attach/form">파일첨부연습</a></li>
 				</ul>
 			</div>
 			<!-- //aside -->
@@ -76,10 +49,10 @@
 				<div id="file">
 					
 						<div>
-							<img id="resultImg" src="">
+							<img id="resultImg" src="${pageContext.request.contextPath}/upload/${requestScope.saveName}">
 						</div>
 						<p>
-							<a id="btnUpload" href="">다시 업로드 하기</a>
+							<a id="btnUpload" href="${pageContext.request.contextPath}/attach/form">다시 업로드 하기</a>
 						</p>
 					
 				</div>
@@ -92,10 +65,8 @@
 		<!-- //container  -->
 
 
-		<div id="footer">
-			Copyright ⓒ 2020 황일영. All right reserved
-		</div>
-		<!-- //footer -->
+		<!-- footer -->
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 	</div>
 	<!-- //wrap -->
 

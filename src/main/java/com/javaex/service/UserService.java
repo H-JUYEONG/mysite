@@ -58,9 +58,9 @@ public class UserService {
 
 		int count = userDao.selectUserById(id);
 
-		if (count >= 1) {
+		if (count >= 1) { // 중복O
 			return false;
-		} else {
+		} else { // 중복X
 			return true;
 		}
 	}

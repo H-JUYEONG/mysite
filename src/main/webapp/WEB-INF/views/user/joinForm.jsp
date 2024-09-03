@@ -54,8 +54,8 @@
 								<label class="form-text" for="input-uid">아이디</label> 
 								<input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
 								<button type="button" id="idChecked">중복체크</button>
-								<div id="idStatus"></div>
 							</div>
+							<div id="idStatus"></div>
 
 							<!-- 비밀번호 -->
 							<div class="form-group">
@@ -131,15 +131,17 @@
 		        console.log(response); //수신데이터
 		        console.log(response.data);
 		        
+		        let result = response.data;
+		        
 		        // 아이디 상태 메세지
 		        let message = document.querySelector('#idStatus');
 		        
-		        if(response.data == false) {
-		        	message.textContent = '사용할 수 없는 아이디입니다.';
-		        	message.style.color = 'red';
-		        } else {
+		        if(result == true) {
 		        	message.textContent = '사용 가능한 아이디입니다.';
-		        	message.style.color = 'blue';
+		        	message.style.color = '#0000ff';
+		        } else {
+		        	message.textContent = '사용할 수 없는 아이디입니다.';
+		        	message.style.color = '#ff0000';
 		        }
 		    
 		    }).catch(function (error) {

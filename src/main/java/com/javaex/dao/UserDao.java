@@ -51,10 +51,10 @@ public class UserDao {
 	}
 
 	/* 아이디 중복 체크 */
-	public int userIdCheck(String id) {
-		System.out.println("UserDao.userIdCheck()");
+	public int selectUserById(String id) {
+		System.out.println("UserDao.selectUserById()");
 
-		int count = sqlSession.selectOne("user.selectId", id);
+		int count = sqlSession.selectOne("user.selectById", id);
 
 		return count;
 	}

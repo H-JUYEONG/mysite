@@ -31,7 +31,7 @@ public class UserController {
 		return "user/joinForm";
 	}
 
-	/* 회원가입(ajax) */
+	/* 회원가입 */
 	@RequestMapping(value = "/user/join", method = { RequestMethod.GET, RequestMethod.POST })
 	public String join(@ModelAttribute UserVo userVo) {
 		System.out.println("UserController.join()");
@@ -41,15 +41,15 @@ public class UserController {
 		return "user/joinOk";
 	}
 	
-	/* 아이디 중복 체크 */
+	/* 아이디 중복 체크(ajax) */
 	@ResponseBody // 리턴에 있는 데이터를 json으로 바꿔서 응답문서의 body에 넣어줘
 	@RequestMapping(value = "/api/user/idcheck", method = { RequestMethod.GET, RequestMethod.POST })
-	public int idCheck(@RequestParam(value="id") String id) {
+	public boolean idCheck(@RequestParam(value="id") String id) {
 		System.out.println("ApiUserController.idCheck()");
 
-		int count = userService.exeUseridCheck(id);
+		boolean result = userService.exeIdCheck(id);
 		
-		return count;
+		return result;
 	}
 
 	/* 로그인 폼 */

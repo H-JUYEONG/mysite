@@ -134,7 +134,7 @@
 		        // 아이디 상태 메세지
 		        let message = document.querySelector('#idStatus');
 		        
-		        if(response.data == 1) {
+		        if(response.data == false) {
 		        	message.textContent = '사용할 수 없는 아이디입니다.';
 		        	message.style.color = 'red';
 		        } else {

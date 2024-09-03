@@ -8,6 +8,9 @@
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/user.css" rel="stylesheet" type="text/css">
 
+<!-- Axios 라이브러리 포함 -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </head>
 
 <body>
@@ -48,24 +51,29 @@
 
 							<!-- 아이디 -->
 							<div class="form-group">
-								<label class="form-text" for="input-uid">아이디</label> <input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
-								<button type="button" id="">중복체크</button>
+								<label class="form-text" for="input-uid">아이디</label> 
+								<input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
+								<button type="button" id="idChecked">중복체크</button>
+								<div id="idStatus"></div>
 							</div>
 
 							<!-- 비밀번호 -->
 							<div class="form-group">
-								<label class="form-text" for="input-pass">패스워드</label> <input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요">
+								<label class="form-text" for="input-pass">패스워드</label> 
+								<input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요">
 							</div>
 
 							<!-- 이메일 -->
 							<div class="form-group">
-								<label class="form-text" for="input-name">이름</label> <input type="text" id="input-name" name="name" value="" placeholder="이름을 입력하세요">
+								<label class="form-text" for="input-name">이름</label> 
+								<input type="text" id="input-name" name="name" value="" placeholder="이름을 입력하세요">
 							</div>
 
 							<!-- //나이 -->
 							<div class="form-group">
-								<span class="form-text">성별</span> <label for="rdo-male">남</label> <input type="radio" id="rdo-male" name="gender" value="male"> <label for="rdo-female">여</label>
-								<input type="radio" id="rdo-female" name="gender" value="female">
+								<span class="form-text">성별</span> 
+								<label for="rdo-male">남</label> <input type="radio" id="rdo-male" name="gender" value="male"> 
+								<label for="rdo-female">여</label> <input type="radio" id="rdo-female" name="gender" value="female">
 
 							</div>
 
@@ -94,6 +102,52 @@
 
 	</div>
 	<!-- //wrap -->
+	
+	<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		console.log("DOM tree완료");
+		
+		let idCheck = document.querySelector('#idChecked');
+		idCheck.addEventListener('click', duplicateId);
+		
+	}); // DOMContentLoaded
+	
+	function duplicateId() {
+		
+		// 데이터 수집
+		let idTag = document.querySelector('#input-uid');
+		
+		let id = idTag.value;
+		
+		 axios({
+		        method: 'get',  // put, post, delete                   
+		        url: '${pageContext.request.contextPath}/api/user/idcheck',
+		        headers: {"Content-Type" : "application/json; charset=utf-8"}, //전송타입
+		        params: { id: id },  //get방식 파라미터로 값이 전달
+		        // data: guestbookVo,   //put, post, delete 방식 자동으로 JSON으로 변환 전달
+		    
+		        responseType: 'json' //수신타입
+		    }).then(function (response) {
+		        console.log(response); //수신데이터
+		        console.log(response.data);
+		        
+		        // 아이디 상태 메세지
+		        let message = document.querySelector('#idStatus');
+		        
+		        if(response.data == 1) {
+		        	message.textContent = '사용할 수 없는 아이디입니다.';
+		        	message.style.color = 'red';
+		        } else {
+		        	message.textContent = '사용 가능한 아이디입니다.';
+		        	message.style.color = 'blue';
+		        }
+		    
+		    }).catch(function (error) {
+		        console.log(error);
+		    });
+	 }
+	
+	</script>
 
 </body>
 

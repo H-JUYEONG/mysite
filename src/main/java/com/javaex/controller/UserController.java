@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
@@ -29,7 +31,7 @@ public class UserController {
 		return "user/joinForm";
 	}
 
-	/* 회원가입 */
+	/* 회원가입(ajax) */
 	@RequestMapping(value = "/user/join", method = { RequestMethod.GET, RequestMethod.POST })
 	public String join(@ModelAttribute UserVo userVo) {
 		System.out.println("UserController.join()");
@@ -37,6 +39,17 @@ public class UserController {
 		userService.exeJoinUser(userVo);
 
 		return "user/joinOk";
+	}
+	
+	/* 아이디 중복 체크 */
+	@ResponseBody // 리턴에 있는 데이터를 json으로 바꿔서 응답문서의 body에 넣어줘
+	@RequestMapping(value = "/api/user/idcheck", method = { RequestMethod.GET, RequestMethod.POST })
+	public int idCheck(@RequestParam(value="id") String id) {
+		System.out.println("ApiUserController.idCheck()");
+
+		int count = userService.exeUseridCheck(id);
+		
+		return count;
 	}
 
 	/* 로그인 폼 */
@@ -106,11 +119,5 @@ public class UserController {
 		
 		return "redirect:/main";
 	}
-
-	/* ajax 회원가입 */
-	@RequestMapping(value = "/user/joinform2", method = { RequestMethod.GET, RequestMethod.POST })
-	public String joinForm2() {
-		System.out.println("UserController.joinForm2()");
-		return "user/joinForm2";
-	}
+	
 }

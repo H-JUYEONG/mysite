@@ -20,9 +20,12 @@ create table attach(
 select * from attach;
 
 select no,
-	   org_name,
+      org_name,
        save_name as saveName,
        file_path as filePath,
        file_size as fileSize
 from attach
 ;
+
+insert into attach 
+values (null, 'org_name', 'save_name', 'file_path', 7777);

@@ -7,7 +7,7 @@
     <select id="selectList" resultType="GalleryVo">
       <![CDATA[   
          select g.no,
-         		g.user_no,
+         		g.user_no as userNo,
          		u.name,
       			g.content,
        			g.file_path as filePath,

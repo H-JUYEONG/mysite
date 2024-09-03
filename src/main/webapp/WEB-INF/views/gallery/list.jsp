@@ -47,50 +47,24 @@
 				<div id="gallery">
 					<div id="list">
 				
-						<c:if test="${sessionScope.authUser.no == galleryList.userNo}">
+						<!-- 로그인에 성공한 유저만 버튼이 보임  -->
+						<c:if test="${not empty sessionScope.authUser}">
 							<button id="btnImgUpload">이미지올리기</button>
 							<div class="clear"></div>
 						</c:if>
-
-				
+					
 						<ul id="viewArea">
 							
+							<c:forEach items="${requestScope.galleryList}" var="GalleryVo">
 							<!-- 이미지반복영역 -->
 								<li>
 									<div class="view" >
 										<img class="imgItem" src="../../assets/image/Gangho-dong.jpg">
-										<div class="imgWriter">작성자: <strong>유재석</strong></div>
-									</div>
-								</li>
-
-								<li>
-									<div class="view" >
-										<img class="imgItem" src="../../assets/image/Jeongjae-Lee.jpg">
-										<div class="imgWriter">작성자: <strong>유재석</strong></div>
-									</div>
-								</li>
-
-								<li>
-									<div class="view" >
-										<img class="imgItem" src="../../assets/image/JeonSoMin.jpg">
-										<div class="imgWriter">작성자: <strong>유재석</strong></div>
-									</div>
-								</li>
-
-								<li>
-									<div class="view" >
-										<img class="imgItem" src="../../assets/image/JiseokJin.jpg">
-										<div class="imgWriter">작성자: <strong>유재석</strong></div>
-									</div>
-								</li>
-
-								<li>
-									<div class="view" >
-										<img class="imgItem" src="../../assets/image/JungWooSung.jpg">
-										<div class="imgWriter">작성자: <strong>유재석</strong></div>
+										<div class="imgWriter">작성자: <strong>${GalleryVo.name}</strong></div>
 									</div>
 								</li>
 							<!-- 이미지반복영역 -->
+							</c:forEach>
 							
 							
 						</ul>

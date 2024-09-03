@@ -24,7 +24,7 @@ select * from gallery;
 
 -- 유저 정보랑 같이 가져오기
 select g.no,
-      g.user_no,
+      g.user_no as userNo,
        u.name,
        g.content,
        g.file_path as filePath,
@@ -37,7 +37,7 @@ on g.user_no = u.no
 ;
 
 select g.no,
-      g.user_no,
+      g.user_no as userNo,
        u.name,
        g.content,
        g.file_path as filePath,
@@ -51,7 +51,7 @@ where g.no = 1
 ;
 
 select no,
-      user_no,
+      user_no as userNo,
        content,
        file_path as filePath,
       org_name as orgName,
@@ -62,20 +62,15 @@ from gallery
 
 -- 데이터 추가
 insert into gallery (user_no, content, file_path, org_name, save_name, file_size) 
-values (1, '사진올리기~', 'ㅋㅋ', 'ㅋㅋ', 'ㅋㅋ', 7777);
+values (1, '강호동', 'C:\javaStudy\upload\1725362448109af8f499b-eaac-4d5c-901f-61d8ddce8eea.jpg', 'Gangho-dong.jpg', '1725362448109af8f499b-eaac-4d5c-901f-61d8ddce8eea.jpg', 49876);
 
--- 조회수 증가
-update rboard
-set hit = hit + 1
-where no = 1;
+insert into gallery (user_no, content, file_path, org_name, save_name, file_size) 
+values (2, '이정재1', 'C:\javaStudy\upload\1725362457108e619d15c-6ede-46ad-82ae-fc3c9d7a2731.jpg', 'Jeongjae-Lee.jpg', '1725362457108e619d15c-6ede-46ad-82ae-fc3c9d7a2731.jpg', 92457);
 
--- 게시판 내용 수정
-update rboard
-set title = '반갑구만유',
-   content = '반갑구만 반가워유'
-where no = 7;
+insert into gallery (user_no, content, file_path, org_name, save_name, file_size) 
+values (3, '이정재2', 'C:\javaStudy\upload\172536247180851c2871b-9a58-4789-97aa-cb20429e8463.jpg', 'Jeongjae-Lee.jpg', '172536247180851c2871b-9a58-4789-97aa-cb20429e8463.jpg', 92457);
 
 -- 삭제
-delete from rboard
-where no = 5;
+delete from gallery
+where no = 4;
 

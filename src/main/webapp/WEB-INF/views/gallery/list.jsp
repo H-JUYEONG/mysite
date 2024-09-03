@@ -218,7 +218,7 @@
 			// 갤러리 리스트의 이미지 값 가져오기
 			let src = event.target.src;  // 주소
 			let no = event.target.dataset.no; // 이미지 번호
-			let userNo = event.target.dataset.userno; // 회원번호
+			let userNo = event.target.dataset.userno; // 글 작성자의 번호
 			let userSession = ${sessionScope.authUser.no}; // 로그인한 회원번호 
 			
 			// 이미지보기 모달창에 가져온 이미지 주소 값 넣기

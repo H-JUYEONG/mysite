@@ -40,4 +40,13 @@ public class GalleryDao {
 		return count;
 	}
 
+	/* 이미지 1개 가져오기 */
+	public GalleryVo selectImg(int no) {
+		
+		GalleryVo galleryVo = sqlSession.selectOne("gallery.selectOne", no);
+		
+		return galleryVo;
+		
+	}
+
 }

@@ -35,5 +35,23 @@
 			where no = #{no}
 		]]>
 	</delete>
+	
+	<!-- 선택한 이미지 정보 가져오기 -->
+    <select id="selectOne" parameterType="int" resultType="GalleryVo">
+      <![CDATA[   
+         select g.no,
+         		g.user_no as userNo,
+         		u.name,
+      			g.content,
+       			g.file_path as filePath,
+	   			g.org_name as orgName,
+       			g.save_name as saveName,
+       			g.file_size as fileSize
+       	from gallery g
+       	inner join users u
+       	on g.user_no = u.no
+       	where g.no = #{no}
+      ]]>
+    </select>
 
 </mapper>

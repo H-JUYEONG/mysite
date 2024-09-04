@@ -91,5 +91,14 @@ public class GalleryService {
 		return count;
 	}
 	
+	/* 이미지 1개 가져오기 */
+	public GalleryVo exeSelectImg(int no) {
+		System.out.println("GalleryService.exeSelectImg");
+		
+		GalleryVo galleryVo = galleryDao.selectImg(no);
+		
+		return galleryVo;
+	}
+	
 
 }

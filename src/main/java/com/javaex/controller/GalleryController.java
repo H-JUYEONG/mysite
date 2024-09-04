@@ -67,4 +67,18 @@ public class GalleryController {
 
 		return count;
 	}
+	
+	/* 이미지 1개 가져오기 */
+	@ResponseBody
+	@RequestMapping(value = "/api/gallery/show", method = { RequestMethod.GET, RequestMethod.POST })
+	public GalleryVo show(@RequestParam(value = "no") int no) {
+		System.out.println("ApiGuestbookController.show()");
+
+		GalleryVo galleryVo = galleryService.exeSelectImg(no);
+
+		System.out.println(no);
+		System.out.println(galleryVo);
+		return galleryVo;
+	}
+	
 }

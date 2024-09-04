@@ -98,7 +98,7 @@
 							<!-- 이미지반복영역 -->
 								<li id="i-${GalleryVo.no}">
 									<div class="view" >
-										<img class="imgItem" data-no="${GalleryVo.no}" data-userno="${GalleryVo.userNo}" src="${pageContext.request.contextPath}/upload/${GalleryVo.saveName}">
+										<img class="imgItem" id="imgs" data-no="${GalleryVo.no}" data-userno="${GalleryVo.userNo}" src="${pageContext.request.contextPath}/upload/${GalleryVo.saveName}">
 										<div class="imgWriter">작성자: <strong>${GalleryVo.name}</strong></div>
 									</div>
 								</li>
@@ -147,6 +147,9 @@
                    		<div class="m-body">
                    			<img class="imgItem" id="show" src="">
                    		</div>
+                   		<div>
+                   			<p id="imgContent"></p>
+                   		</div>
                    			<div>
                    				<button id="btnDelete" class="btnDelete" type="button">삭제</button>
                    			</div>
@@ -184,8 +187,9 @@
 		closeBtn.addEventListener('click', closeModal);
 		
 		// 이미지보기 모달창 띄우기 버튼 클릭이벤트 등록
-		let showImg = document.querySelector('#viewArea');
+		let showImg = document.querySelector('#imgs');
 		showImg.addEventListener('click', showImgModal);
+		// console.log(showImg);
 		
 		// 이미지보기 모달창 닫기 버튼 클릭이벤트 등록
 		let closeBtn2 = document.querySelector('#closeBtn2');
@@ -210,38 +214,60 @@
 	}
 	
 	// 이미지보기 모달창 보이기
-	function showImgModal(event) {
+	function showImgModal() {
 		
-		if(event.target.tagName == 'IMG') {
-			console.log('클릭');
+		// 이미지 태그에서 번호 가져오기
+		let imgNoTag = document.querySelector('#imgs'); 
+		let imgNo = imgNoTag.dataset.no;
+		
+		// 가져온 이미지 번호를 input에 넣기
+		let txtNoTag = document.querySelector('#modalNo');
+		txtNoTag.value = imgNo;
+		let no = txtNoTag.value;
+		
+		// DB에서 데이터 삭제(서버에 전송해서 삭제)
+		axios({
+			method: 'get', // put, post, delete
+			url: '${pageContext.request.contextPath}/api/gallery/show',
+			headers: {"Content-Type" : "application/json; charset=utf-8"}, //전송타입
+			params: { no: no }, //get방식 파라미터로 값이 전달
+			//data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
 			
-			// 갤러리 리스트의 이미지 값 가져오기
-			let src = event.target.src;  // 주소
-			let no = event.target.dataset.no; // 이미지 번호
-			let userNo = event.target.dataset.userno; // 글 작성자의 번호
-			let userSession = ${sessionScope.authUser.no}; // 로그인한 회원번호 
-			
-			// 이미지보기 모달창에 가져온 이미지 주소 값 넣기
-			let imgTag = document.querySelector('#show');
-			imgTag.src = src;
-			
-			// 이미지보기 모달창 input에 가져온 no 값 넣기
-			let txtNoTag = document.querySelector('#modalNo');
-			txtNoTag.value = no;
-			
-			// 삭제 버튼 id 가져오기
-			let btnDelete = document.querySelector('#btnDelete');
-			
-			if (userSession == userNo) {
-				btnDelete.style.display = 'block'; // 삭제 버튼 보이기
-	        } else {
-	            btnDelete.style.display = 'none'; // 삭제 버튼 숨기기
-	        }
-			
-			// 모달창 보이게 처리
-			let modalTag = document.querySelector('#showImg');
-			modalTag.style.display = 'block';
-		}
+			responseType: 'json' //수신타입
+		}).then(function (response) {
+				console.log(response); //수신데이터
+				console.log(response.data);
+				
+				// 이미지보기 모달창에 뜨는 이미지
+				let imgModalTag = document.querySelector('#show'); 
+				imgModalTag.src = '${pageContext.request.contextPath}/upload/' + response.data.saveName;
+				
+				// 이미지보기 모달창에 뜨는 글내용
+				let imgContent = document.querySelector('#imgContent'); 
+				imgContent.textContent = response.data.content;
+				
+				// 글 작성자의 회원번호
+				let userNo = response.data.userNo;
+				// 로그인한 회원번호 
+				let userSession = ${sessionScope.authUser.no}; 
+				
+				// 삭제 버튼 태그 id 가져오기
+				let btnDelete = document.querySelector('#btnDelete');
+				
+				if (userSession == userNo) {
+					btnDelete.style.display = 'block'; // 삭제 버튼 보이기
+		        } else {
+		            btnDelete.style.display = 'none'; // 삭제 버튼 숨기기
+		        }
+				
+				// 모달창 보이게 처리
+				let modalTag = document.querySelector('#showImg');
+				modalTag.style.display = 'block';
+
+		}).catch(function (error) {
+				console.log(error);
+		});
+		
 	}
 	
 	// 이미지보기 모달창 닫기

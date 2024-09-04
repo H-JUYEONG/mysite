@@ -44,23 +44,23 @@ public class GalleryController {
 
 		// 로그인한 session 값을 객체로 가져오기
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		
+
 		System.out.println("-----");
 		System.out.println(authUser.getNo());
 		System.out.println(galleryVo.getContent());
 		System.out.println(file);
 		System.out.println("-----");
-		
+
 		// 회원의 no, content, file 같이 넘겨주기
 		galleryService.upload(authUser.getNo(), galleryVo.getContent(), file);
 
 		return "redirect:/gallery/list";
 	}
-	
+
 	/* 이미지 삭제 */
 	@ResponseBody
 	@RequestMapping(value = "/api/gallery/remove", method = { RequestMethod.GET, RequestMethod.POST })
-	public int remove(@RequestParam(value="no") int no) {
+	public int remove(@RequestParam(value = "no") int no) {
 		System.out.println("ApiGuestbookController.remove()");
 
 		int count = galleryService.exeDeleteImg(no);

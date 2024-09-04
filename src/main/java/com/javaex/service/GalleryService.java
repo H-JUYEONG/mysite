@@ -30,7 +30,7 @@ public class GalleryService {
 	
 	/* 업로드 */
 	public String upload(int userNo, String content, MultipartFile file) {
-		System.out.println("AttachService.upload()");
+		System.out.println("GalleryService.upload()");
 
 		// 사진에 기본정보로 우리가 관리할 정보를 뽑아내야된다 --> db저장
 		// 파일 저장 폴더
@@ -59,7 +59,7 @@ public class GalleryService {
 		// (1) DB 저장
 		// (1-1) 데이터 묶기
 		GalleryVo galleryVo = new GalleryVo(userNo, content, filePath, orgName, saveName, fileSize);
-		System.out.println("attachVo: " + galleryVo);
+		System.out.println("galleryVo: " + galleryVo);
 
 		// (1-2) dao를 통해서 db에 저장
 		galleryDao.insertFile(galleryVo);

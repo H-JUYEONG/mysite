@@ -23,7 +23,6 @@ select no,
       org_name,
        save_name as saveName,
        file_path as filePath,
-       file_size as fileSize
 from attach
 ;
 

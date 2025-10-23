@@ -25,7 +25,7 @@ public class ApiGuestbookController {
 		System.out.println("ApiGuestbookController.list()");
 
 		List<GuestbookVo> guestbookList = guestbookService.exeGetGuestList();
-		System.out.println(guestbookList);
+		// System.out.println(guestbookList);
 
 		return guestbookList;
 	}
